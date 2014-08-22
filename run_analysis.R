@@ -42,6 +42,7 @@ features <- NULL
 
 ## Keep only 'mean' and 'std deviation' measurements
 mean_data <- master_data[,grep("mean()", colnames(master_data))]
+mean_data <- mean_data[,-grep("Freq()", colnames(mean_data))]
 std_data <- master_data[,grep("std()", colnames(master_data))]
 
 ## Create first tidy data set of all std and mean measurements
@@ -61,6 +62,6 @@ activity_labels <- NULL
 
 ## Create second tidy data set with the average of each variable
 ## for each activity and each subject and write it to a text file
-tidy_data2 <- aggregate(tidy_data1[,3:81], by=tidy_data1[c("Subject", "Activity")],
+tidy_data2 <- aggregate(tidy_data1[,3:68], by=tidy_data1[c("Subject", "Activity")],
         FUN=mean)
 write.table(tidy_data2, file="tidy_data2.txt", sep=",", row.name=FALSE)
